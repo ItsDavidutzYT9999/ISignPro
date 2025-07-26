@@ -3,20 +3,54 @@ workflows:
     name: Build unsigned IPA
     environment:
       vars:
-        XCODE_WORKSPACE: ISignApp.xcodeproj
-        XCODE_SCHEME: ISignApp
+        XCODE_WORKSPACE: ""
+        XCODE_PROJECT: "ISignApp.xcodeproj"
+        XCODE_SCHEME: "ISignApp"
+        XCODE_CONFIGURATION: "Release"
+        BUNDLE_ID: "com.perfectshot.isignapp"
     scripts:
-      - name: Clean and archive without signing
+      - name: Clean and Archive (no signing)
         script: |
           xcodebuild clean archive \
-            -project $XCODE_WORKSPACE \
+            -project $XCODE_PROJECT \
             -scheme $XCODE_SCHEME \
             -sdk iphoneos \
+            -configuration $XCODE_CONFIGURATION \
             -archivePath $CM_BUILD_DIR/ISignApp.xcarchive \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \
             PROVISIONING_PROFILE_SPECIFIER=""
+      - name: Create exportOptions.plist
+        script: |
+          cat > exportOptions.plist <<EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+          "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>method</key>
+              <string>development</string>
+              <key>signingStyle</key>
+              <string>manual</string>
+              <key>stripSwiftSymbols</key>
+              <true/>
+              <key>compileBitcode</key>
+              <false/>
+              <key>signingCertificate</key>
+              <string></string>
+              <key>provisioningProfiles</key>
+              <dict>
+                  <key>${BUNDLE_ID}</key>
+                  <string></string>
+              </dict>
+              <key>destination</key>
+              <string>export</string>
+              <key>manageAppVersionAndBuildNumber</key>
+              <false/>
+          </dict>
+          </plist>
+          EOF
       - name: Export unsigned IPA
         script: |
           xcodebuild -exportArchive \
