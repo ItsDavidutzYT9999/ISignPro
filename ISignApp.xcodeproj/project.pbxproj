@@ -1,0 +1,168 @@
+// !$*UTF8*$!
+{
+  archiveVersion = 1;
+  classes = {};
+  objectVersion = 55;
+  objects = {
+
+    /* Project configuration */
+    1D6058900D05DD3D006BFB54 /* Project object */ = {
+      isa = PBXProject;
+      attributes = {
+        LastUpgradeCheck = 1300;
+        ORGANIZATIONNAME = "PerfectShot";
+        TargetAttributes = {
+          1D6058910D05DD3E006BFB54 = {
+            CreatedOnToolsVersion = "13.0";
+          };
+        };
+      };
+      buildConfigurationList = 1D60589B0D05DD3E006BFB54 /* Build configuration list for PBXProject */;
+      compatibilityVersion = "Xcode 12.0";
+      developmentRegion = en;
+      hasScannedForEncodings = 0;
+      knownRegions = (en, Base);
+      mainGroup = 1D60588D0D05DD3D006BFB54;
+      productRefGroup = 1D60588E0D05DD3D006BFB54;
+      projectDirPath = "";
+      projectRoot = "";
+      targets = (1D6058910D05DD3E006BFB54);
+    };
+
+    /* Target: ISignApp */
+    1D6058910D05DD3E006BFB54 = {
+      isa = PBXNativeTarget;
+      buildConfigurationList = 1D60589C0D05DD3E006BFB54;
+      buildPhases = (
+        1D6058930D05DD3E006BFB54 /* Sources */,
+        1D6058940D05DD3E006BFB54 /* Frameworks */,
+        1D6058950D05DD3E006BFB54 /* Resources */
+      );
+      buildRules = ();
+      dependencies = ();
+      name = ISignApp;
+      productName = ISignApp;
+      productReference = 1D6058920D05DD3E006BFB54;
+      productType = "com.apple.product-type.application";
+    };
+
+    /* Build Phases */
+    1D6058930D05DD3E006BFB54 /* Sources */ = {
+      isa = PBXSourcesBuildPhase;
+      buildActionMask = 2147483647;
+      files = ();
+      runOnlyForDeploymentPostprocessing = 0;
+    };
+
+    1D6058940D05DD3E006BFB54 /* Frameworks */ = {
+      isa = PBXFrameworksBuildPhase;
+      buildActionMask = 2147483647;
+      files = ();
+      runOnlyForDeploymentPostprocessing = 0;
+    };
+
+    1D6058950D05DD3E006BFB54 /* Resources */ = {
+      isa = PBXResourcesBuildPhase;
+      buildActionMask = 2147483647;
+      files = ();
+      runOnlyForDeploymentPostprocessing = 0;
+    };
+
+    /* Product reference */
+    1D6058920D05DD3E006BFB54 = {
+      isa = PBXFileReference;
+      explicitFileType = wrapper.application;
+      includeInIndex = 0;
+      path = ISignApp.app;
+      sourceTree = BUILT_PRODUCTS_DIR;
+    };
+
+    /* Groups */
+    1D60588D0D05DD3D006BFB54 = {
+      isa = PBXGroup;
+      children = (1D60588E0D05DD3D006BFB54);
+      sourceTree = "<group>";
+    };
+
+    1D60588E0D05DD3D006BFB54 = {
+      isa = PBXGroup;
+      children = ();
+      name = Products;
+      sourceTree = "<group>";
+    };
+
+    /* Configurations */
+    1D60589B0D05DD3E006BFB54 = {
+      isa = XCConfigurationList;
+      buildConfigurations = (
+        1D60589D0D05DD3E006BFB54,
+        1D60589E0D05DD3E006BFB54
+      );
+      defaultConfigurationIsVisible = 0;
+      defaultConfigurationName = Debug;
+    };
+
+    1D60589C0D05DD3E006BFB54 = {
+      isa = XCConfigurationList;
+      buildConfigurations = (
+        1D60589F0D05DD3E006BFB54,
+        1D6058A00D05DD3E006BFB54
+      );
+      defaultConfigurationIsVisible = 0;
+      defaultConfigurationName = Debug;
+    };
+
+    1D60589D0D05DD3E006BFB54 /* Debug */ = {
+      isa = XCBuildConfiguration;
+      buildSettings = {
+        CODE_SIGNING_ALLOWED = NO;
+        PRODUCT_NAME = ISignApp;
+        SWIFT_VERSION = 5.0;
+        IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+        SDKROOT = iphoneos;
+      };
+      name = Debug;
+    };
+
+    1D60589E0D05DD3E006BFB54 /* Release */ = {
+      isa = XCBuildConfiguration;
+      buildSettings = {
+        CODE_SIGNING_ALLOWED = NO;
+        PRODUCT_NAME = ISignApp;
+        SWIFT_VERSION = 5.0;
+        IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+        SDKROOT = iphoneos;
+      };
+      name = Release;
+    };
+
+    1D60589F0D05DD3E006BFB54 /* Debug (Target) */ = {
+      isa = XCBuildConfiguration;
+      buildSettings = {
+        CODE_SIGNING_ALLOWED = NO;
+        PRODUCT_BUNDLE_IDENTIFIER = com.perfectshot.isignapp;
+        PRODUCT_NAME = ISignApp;
+        INFOPLIST_FILE = ISignApp/Info.plist;
+        SWIFT_VERSION = 5.0;
+        SWIFTUI_APP = YES;
+        ENABLE_PREVIEWS = YES;
+      };
+      name = Debug;
+    };
+
+    1D6058A00D05DD3E006BFB54 /* Release (Target) */ = {
+      isa = XCBuildConfiguration;
+      buildSettings = {
+        CODE_SIGNING_ALLOWED = NO;
+        PRODUCT_BUNDLE_IDENTIFIER = com.perfectshot.isignapp;
+        PRODUCT_NAME = ISignApp;
+        INFOPLIST_FILE = ISignApp/Info.plist;
+        SWIFT_VERSION = 5.0;
+        SWIFTUI_APP = YES;
+        ENABLE_PREVIEWS = YES;
+      };
+      name = Release;
+    };
+  };
+  rootObject = 1D6058900D05DD3D006BFB54 /* Project object */;
+}
