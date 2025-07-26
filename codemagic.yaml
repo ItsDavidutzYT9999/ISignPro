@@ -3,7 +3,6 @@ workflows:
     name: Build unsigned IPA
     environment:
       vars:
-        XCODE_WORKSPACE: ""
         XCODE_PROJECT: "ISignApp.xcodeproj"
         XCODE_SCHEME: "ISignApp"
         XCODE_CONFIGURATION: "Release"
