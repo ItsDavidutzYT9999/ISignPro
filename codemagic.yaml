@@ -2,14 +2,8 @@ workflows:
   isignapp-ios:
     name: Build IPA for device
     environment:
-      vars:
-        # Setează dacă vrei codare automată (opțional)
-        # MATCH_PASSWORD: Encrypted(...)
+      # fără variabile de mediu goale
     scripts:
-      - name: Install dependencies
-        script: |
-          brew install cocoapods || true
-          pod install || true
       - name: Build and archive IPA
         script: |
           xcodebuild archive \
