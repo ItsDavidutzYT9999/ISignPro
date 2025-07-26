@@ -1,17 +1,33 @@
 workflows:
   isignapp-ios:
-    name: ISignApp iOS Build (No Signing)
+    name: Build IPA for device
     environment:
-      xcode: latest
       vars:
-        APP_SCHEME: "ISignApp"
+        # Setează dacă vrei codare automată (opțional)
+        # MATCH_PASSWORD: Encrypted(...)
     scripts:
-      - name: Build .app for Simulator (no signing)
+      - name: Install dependencies
         script: |
-          xcodebuild clean build \
-            -scheme "$APP_SCHEME" \
-            -sdk iphonesimulator \
-            -configuration Debug \
-            -derivedDataPath build/
+          brew install cocoapods || true
+          pod install || true
+      - name: Build and archive IPA
+        script: |
+          xcodebuild archive \
+            -workspace YourWorkspace.xcworkspace \
+            -scheme ISignApp \
+            -sdk iphoneos \
+            -archivePath $CM_BUILD_DIR/ISignApp.xcarchive \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="iPhone Developer" \
+            PROVISIONING_PROFILE_SPECIFIER="YourProvisioningProfileName"
+      - name: Export IPA
+        script: |
+          xcodebuild -exportArchive \
+            -archivePath $CM_BUILD_DIR/ISignApp.xcarchive \
+            -exportPath $CM_BUILD_DIR \
+            -exportOptionsPlist exportOptions.plist
     artifacts:
-      - build/Build/Products/Debug-iphonesimulator/*.app
+      - $CM_BUILD_DIR/*.ipa
+    publishing:
+      scripts:
+        - echo "IPA build complete."
