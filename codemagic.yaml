@@ -6,7 +6,7 @@ workflows:
       - name: Build and archive IPA
         script: |
           xcodebuild archive \
-            -workspace YourWorkspace.xcworkspace \
+            -project ISignApp.xcodeproj \
             -scheme ISignApp \
             -sdk iphoneos \
             -archivePath $CM_BUILD_DIR/ISignApp.xcarchive \
