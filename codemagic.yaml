@@ -1,16 +1,22 @@
 workflows:
   isignapp-ios:
     name: Build unsigned IPA
-    environment: {}
+    environment:
+      vars:
+        XCODE_WORKSPACE: ISignApp.xcodeproj
+        XCODE_SCHEME: ISignApp
     scripts:
-      - name: Build app without signing
+      - name: Clean and archive without signing
         script: |
           xcodebuild clean archive \
-            -project ISignApp.xcodeproj \
-            -scheme ISignApp \
+            -project $XCODE_WORKSPACE \
+            -scheme $XCODE_SCHEME \
             -sdk iphoneos \
             -archivePath $CM_BUILD_DIR/ISignApp.xcarchive \
-            CODE_SIGNING_ALLOWED=NO
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            PROVISIONING_PROFILE_SPECIFIER=""
       - name: Export unsigned IPA
         script: |
           xcodebuild -exportArchive \
