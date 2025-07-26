@@ -12,7 +12,7 @@ workflows:
             -archivePath $CM_BUILD_DIR/ISignApp.xcarchive \
             CODE_SIGN_STYLE=Manual \
             CODE_SIGN_IDENTITY="iPhone Developer" \
-            PROVISIONING_PROFILE_SPECIFIER="YourProvisioningProfileName"
+            PROVISIONING_PROFILE_SPECIFIER="GAC TOYOTA CO."
       - name: Export IPA
         script: |
           xcodebuild -exportArchive \
