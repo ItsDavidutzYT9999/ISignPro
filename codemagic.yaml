@@ -2,7 +2,7 @@ workflows:
   isignapp-ios:
     name: Build IPA for device
     environment:
-      # fără variabile de mediu goale
+      # Nu există sectiunea vars deloc
     scripts:
       - name: Build and archive IPA
         script: |
