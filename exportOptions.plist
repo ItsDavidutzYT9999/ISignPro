@@ -7,10 +7,9 @@
   <string>development</string>
   <key>signingStyle</key>
   <string>manual</string>
+  <key>compileBitcode</key>
+  <false/>
   <key>provisioningProfiles</key>
-  <dict>
-    <key>com.perfectshot.isignapp</key>
-    <string>GAC TOYOTA CO.</string>
-  </dict>
+  <dict/>
 </dict>
 </plist>
