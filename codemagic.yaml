@@ -1,6 +1,6 @@
 workflows:
   isignapp-ios:
-    name: Build unsigned IPA
+    name: Build unsigned IPA directly
     environment:
       vars:
         XCODE_PROJECT: "ISignApp.xcodeproj"
@@ -8,53 +8,22 @@ workflows:
         XCODE_CONFIGURATION: "Release"
         BUNDLE_ID: "com.perfectshot.isignapp"
     scripts:
-      - name: Clean and Archive (no signing)
+      - name: Build app (unsigned)
         script: |
-          xcodebuild clean archive \
+          xcodebuild clean build \
             -project $XCODE_PROJECT \
             -scheme $XCODE_SCHEME \
-            -sdk iphoneos \
             -configuration $XCODE_CONFIGURATION \
-            -archivePath $CM_BUILD_DIR/ISignApp.xcarchive \
+            -sdk iphoneos \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \
-            PROVISIONING_PROFILE_SPECIFIER=""
-      - name: Create exportOptions.plist
+            PROVISIONING_PROFILE_SPECIFIER="" \
+            BUILD_DIR=$CM_BUILD_DIR/build
+      - name: Package IPA manually
         script: |
-          cat > exportOptions.plist <<EOF
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
-          "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-              <key>method</key>
-              <string>development</string>
-              <key>signingStyle</key>
-              <string>manual</string>
-              <key>stripSwiftSymbols</key>
-              <true/>
-              <key>compileBitcode</key>
-              <false/>
-              <key>signingCertificate</key>
-              <string></string>
-              <key>provisioningProfiles</key>
-              <dict>
-                  <key>${BUNDLE_ID}</key>
-                  <string></string>
-              </dict>
-              <key>destination</key>
-              <string>export</string>
-              <key>manageAppVersionAndBuildNumber</key>
-              <false/>
-          </dict>
-          </plist>
-          EOF
-      - name: Export unsigned IPA
-        script: |
-          xcodebuild -exportArchive \
-            -archivePath $CM_BUILD_DIR/ISignApp.xcarchive \
-            -exportPath $CM_BUILD_DIR \
-            -exportOptionsPlist exportOptions.plist
+          mkdir -p Payload
+          cp -r $CM_BUILD_DIR/build/Release-iphoneos/ISignApp.app Payload/
+          zip -r ISignApp.ipa Payload
     artifacts:
-      - $CM_BUILD_DIR/*.ipa
+      - ISignApp.ipa
