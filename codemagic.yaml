@@ -1,6 +1,6 @@
 workflows:
   isignapp-ios:
-    name: Build unsigned IPA directly
+    name: Build only .app (unsigned)
     environment:
       vars:
         XCODE_PROJECT: "ISignApp.xcodeproj"
@@ -8,7 +8,7 @@ workflows:
         XCODE_CONFIGURATION: "Release"
         BUNDLE_ID: "com.perfectshot.isignapp"
     scripts:
-      - name: Build app (unsigned)
+      - name: Build .app (unsigned)
         script: |
           xcodebuild clean build \
             -project $XCODE_PROJECT \
@@ -20,10 +20,5 @@ workflows:
             CODE_SIGN_IDENTITY="" \
             PROVISIONING_PROFILE_SPECIFIER="" \
             BUILD_DIR=$CM_BUILD_DIR/build
-      - name: Package IPA manually
-        script: |
-          mkdir -p Payload
-          cp -r $CM_BUILD_DIR/build/Release-iphoneos/ISignApp.app Payload/
-          zip -r ISignApp.ipa Payload
     artifacts:
-      - ISignApp.ipa
+      - build/Release-iphoneos/ISignApp.app
